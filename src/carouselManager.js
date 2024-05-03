@@ -4,32 +4,13 @@ const indicatorButtons = document.querySelectorAll("button[data-index]");
 let currentIndex = 0;
 let carouselIntervalId;
 
-function showImage() {
-  images[currentIndex].classList.add("is-displayed");
-}
-
-function hideImage() {
-  images[currentIndex].classList.remove("is-displayed");
-}
-
 function resetCurrentIndex() {
   currentIndex = 0;
-}
-
-function indicateCurrentIndex() {
-  indicatorButtons.forEach((button) => {
-    if (button.dataset.index === currentIndex.toString()) {
-      button.classList.add("is-active");
-    } else {
-      button.classList.remove("is-active");
-    }
-  });
 }
 
 function incrementCurrentIndex() {
   if (currentIndex < images.length - 1) {
     currentIndex += 1;
-    console.log(`currentIndex: ${currentIndex}`);
   } else {
     console.warn(
       `currentIndex can't exceed array.length, reset to 0.currentIndex: ${currentIndex}, array.length: ${images.length}`,
@@ -42,7 +23,6 @@ function incrementCurrentIndex() {
 function decrementCurrentIndex() {
   if (currentIndex > 0) {
     currentIndex -= 1;
-    console.log(`currentIndex: ${currentIndex}`);
   } else {
     console.warn(
       `currentIndex can't be less than array.length, exited.currentIndex: ${currentIndex}, array.length: ${images.length}`,
@@ -54,6 +34,24 @@ function decrementCurrentIndex() {
 function getIndexNumber(e) {
   const buttonIndex = e.target.dataset.index;
   return parseInt(buttonIndex);
+}
+
+function showImage() {
+  images[currentIndex].classList.add("is-displayed");
+}
+
+function hideImage() {
+  images[currentIndex].classList.remove("is-displayed");
+}
+
+function indicateCurrentIndex() {
+  indicatorButtons.forEach((button) => {
+    if (button.dataset.index === currentIndex.toString()) {
+      button.classList.add("is-active");
+    } else {
+      button.classList.remove("is-active");
+    }
+  });
 }
 
 function rotateCarouselImages() {
@@ -114,16 +112,14 @@ export function jumpContentOnClick(e) {
   activateCarousel();
 }
 
-// BONUS
 export function togglePlayPauseOnClick(e) {
-  console.log(`toggle PlayPause clicked.`);
   e.preventDefault();
-  console.log(
-    `currentIndex: ${currentIndex}, imageToShow: ${images[currentIndex]}`,
-  );
+  const playPauseButton = document.querySelector("#play-pause svg");
   if (carouselIntervalId) {
     stopCarousel();
+    playPauseButton.classList.add("is-paused");
   } else {
     activateCarousel();
+    playPauseButton.classList.remove("is-paused");
   }
 }
