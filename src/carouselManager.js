@@ -1,17 +1,29 @@
+const images = document.querySelectorAll("div.image-holder > img");
+const indicatorButtons = document.querySelectorAll("button[data-index]");
+
 let currentIndex = 0;
-let images = document.querySelectorAll("div.image-holder > img");
 let carouselIntervalId;
 
 function showImage() {
-  images[currentIndex].classList.add("is-active");
+  images[currentIndex].classList.add("is-displayed");
 }
 
 function hideImage() {
-  images[currentIndex].classList.remove("is-active");
+  images[currentIndex].classList.remove("is-displayed");
 }
 
 function resetCurrentIndex() {
   currentIndex = 0;
+}
+
+function indicateCurrentIndex() {
+  indicatorButtons.forEach((button) => {
+    if (button.dataset.index === currentIndex.toString()) {
+      button.classList.add("is-active");
+    } else {
+      button.classList.remove("is-active");
+    }
+  });
 }
 
 function incrementCurrentIndex() {
@@ -47,6 +59,7 @@ function getIndexNumber(e) {
 function rotateCarouselImages() {
   hideImage();
   incrementCurrentIndex();
+  indicateCurrentIndex();
   showImage();
 }
 
@@ -66,6 +79,7 @@ function stopCarousel() {
 // Default
 export function startCarouselOnLoad() {
   resetCurrentIndex();
+  indicateCurrentIndex();
   showImage();
   activateCarousel();
 }
@@ -86,6 +100,7 @@ export function navigateContentOnClick(e) {
       console.warn(`No Id found: ${buttonId}`);
       return;
   }
+  indicateCurrentIndex();
   showImage();
   activateCarousel();
 }
@@ -94,6 +109,7 @@ export function jumpContentOnClick(e) {
   e.preventDefault();
   hideImage();
   currentIndex = getIndexNumber(e);
+  indicateCurrentIndex();
   showImage();
   activateCarousel();
 }
