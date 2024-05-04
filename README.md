@@ -3,7 +3,7 @@
 <div align="center"><img src="image-carousel-the-odin-project-by-k-belltree-2024-min.png" alt="Image Carousel Practice Preview by Keiko S. 2024" width="50%" height="50%"></div>
 
 <br>
-This **image carousel** was developed as part of an assignment to demonstrate understanding of Dynamic User Interface Interactions from The Odin Project. For details on this project, please visit the lesson on ['Image Carousel'](https://www.theodinproject.com/lessons/node-path-javascript-dynamic-user-interface-interactions#image-carousel).
+This image carousel was developed as part of an assignment to demonstrate understanding of Dynamic User Interface Interactions from The Odin Project. For details on this project, please visit the lesson on ['Image Carousel'](https://www.theodinproject.com/lessons/node-path-javascript-dynamic-user-interface-interactions#image-carousel).
 
 ## Key Project Instructions:
 
